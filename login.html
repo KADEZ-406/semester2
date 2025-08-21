@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - DZVYSTORE</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#DC3545',secondary:'#6c757d'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+        }
+        .input-field {
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            border-color: #DC3545;
+            box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.25);
+        }
+        .login-card {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-white p-4">
+    <div class="absolute top-6 left-6">
+        <button class="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center">
+            <a href="index.html"><i class="ri-arrow-left-s-line text-gray-700 text-xl"></i></a>
+        </button>
+    </div>
+
+    <div class="flex flex-col md:flex-row items-center justify-center w-full max-w-5xl">
+        <div class="w-full md:w-1/2 max-w-md">
+            <div class="login-card bg-white rounded-2xl p-8 w-full">
+                <h1 class="text-3xl font-bold text-center mb-8">Masuk</h1>
+                
+                <form class="space-y-4">
+                    <div class="relative">
+                        <input type="email" placeholder="Email" class="input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none text-gray-700">
+                        <div class="absolute right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 flex items-center justify-center text-gray-400">
+                            <i class="ri-mail-line"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="relative">
+                        <input type="password" placeholder="Password" class="input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none text-gray-700">
+                        <div class="absolute right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 flex items-center justify-center text-gray-400">
+                            <i class="ri-lock-line"></i>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition duration-300 !rounded-button whitespace-nowrap">
+                        Masuk
+                    </button>
+                </form>
+                
+                <div class="flex items-center my-6">
+                    <div class="flex-grow h-px bg-gray-300"></div>
+                    <div class="px-4 text-gray-500 font-medium">OR</div>
+                    <div class="flex-grow h-px bg-gray-300"></div>
+                </div>
+                
+                <button class="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-3 px-4 text-gray-700 font-medium hover:bg-gray-50 transition duration-300 !rounded-button whitespace-nowrap">
+                    <img src="https://www.google.com/favicon.ico" alt="Google" class="w-5 h-5">
+                    Masuk Dengan Google
+                </button>
+                
+                <div class="text-center mt-8">
+                    <p class="text-gray-600">
+                        Belum Memiliki Akun? 
+                        <a href="regites.html" class="text-primary font-medium hover:underline">Daftar</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="w-full md:w-1/2 flex justify-center mt-10 md:mt-0">
+            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+                <img src="src/assets/images/logo-search-grid-2x (1).png" alt="Logo" width="100%" height="50%" style="border-radius: 10%;">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        const emailInput = document.querySelector('input[type="email"]');
+        const passwordInput = document.querySelector('input[type="password"]');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get the redirect URL from query parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const redirectUrl = urlParams.get('redirect') || 'home.html';
+            
+            // Set user in localStorage
+            localStorage.setItem('user', JSON.stringify({
+                email: emailInput.value,
+                loginTime: new Date().toISOString()
+            }));
+            
+            // Redirect to the specified page
+            window.location.href = redirectUrl;
+        });
+    });
+</script>
+</html>

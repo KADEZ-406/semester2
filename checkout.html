@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - DzyyStore</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="src/assets/css/output.css" rel="stylesheet">
+</head>
+<body class="min-h-screen flex flex-col bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="text-xl font-bold text-primary"><a href="home.html">DzvyStore</a></a>
+            <div class="flex items-center gap-4">
+                <button class="w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary relative">
+                    <i class="ri-notification-3-line text-xl"></i>
+                </button>
+                <button id="cartButton" class="w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary relative">
+                    <i class="ri-shopping-cart-2-line text-xl"></i>
+                    <span id="cartCount" class="cart-badge"></span>
+                </button>
+                <button class="w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary">
+                    <i class="ri-user-3-line text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow py-8 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Checkout Form -->
+                <div class="w-full lg:w-2/3">
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <h2 class="text-xl font-semibold mb-6">Informasi Pengiriman</h2>
+                        <form id="checkoutForm" class="space-y-6">
+                            <!-- Personal Information -->
+                            <div class="space-y-4">
+                                <h3 class="font-medium text-gray-900">Data Diri</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
+                                        <input type="text" name="fullName" required class="w-full px-4 py-2 border border-gray-200 rounded-button focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                        <input type="email" name="email" required class="w-full px-4 py-2 border border-gray-200 rounded-button focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">No. Handphone</label>
+                                        <input type="tel" name="phone" required class="w-full px-4 py-2 border border-gray-200 rounded-button focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Shipping Address -->
+                            <div class="space-y-4">
+                                <h3 class="font-medium text-gray-900">Alamat Pengiriman</h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Alamat Lengkap</label>
+                                        <textarea name="address" required rows="3" class="w-full px-4 py-2 border border-gray-200 rounded-button focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"></textarea>
+                                    </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">Provinsi</label>
+                                            <input type="text" name="province" required class="w-full px-4 py-2 border border-gray-200 rounded-button focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">Kota/Kabupaten</label>
+                                            <input type="text" name="city" required class="w-full px-4 py-2 border border-gray-200 rounded-button focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">Kecamatan</label>
+                                            <input type="text" name="district" required class="w-full px-4 py-2 border border-gray-200 rounded-button focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">Kode Pos</label>
+                                            <input type="text" name="postalCode" required class="w-full px-4 py-2 border border-gray-200 rounded-button focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Notes -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Catatan (Opsional)</label>
+                                <textarea name="notes" rows="2" class="w-full px-4 py-2 border border-gray-200 rounded-button focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"></textarea>
+                            </div>
+
+                            <!-- Payment Method -->
+                            <div class="space-y-4">
+                                <h3 class="font-medium text-gray-900">Metode Pembayaran</h3>
+                                <div class="space-y-3">
+                                    <!-- E-Wallet -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <label class="flex items-center p-4 cursor-pointer">
+                                            <input type="radio" name="paymentMethod" value="ewallet" required class="w-4 h-4 text-primary border-gray-300 focus:ring-primary">
+                                            <span class="ml-3">
+                                                <span class="block font-medium text-gray-900">E-Wallet</span>
+                                                <span class="block text-sm text-gray-500">OVO, GoPay, DANA, LinkAja, ShopeePay</span>
+                                            </span>
+                                        </label>
+                                        <div class="payment-details hidden border-t border-gray-100 p-4 bg-gray-50 space-y-3">
+                                            <div class="space-y-2">
+                                                <label class="block text-sm font-medium text-gray-700">Pilih E-Wallet</label>
+                                                <select name="ewalletType" class="w-full px-4 py-2 border border-gray-200 rounded-button focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                                                    <option value="ovo">OVO</option>
+                                                    <option value="gopay">GoPay</option>
+                                                    <option value="dana">DANA</option>
+                                                    <option value="linkaja">LinkAja</option>
+                                                    <option value="shopeepay">ShopeePay</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Bank Transfer -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <label class="flex items-center p-4 cursor-pointer">
+                                            <input type="radio" name="paymentMethod" value="bank" required class="w-4 h-4 text-primary border-gray-300 focus:ring-primary">
+                                            <span class="ml-3">
+                                                <span class="block font-medium text-gray-900">Transfer Bank</span>
+                                                <span class="block text-sm text-gray-500">BCA, Mandiri, BNI, BRI</span>
+                                            </span>
+                                        </label>
+                                        <div class="payment-details hidden border-t border-gray-100 p-4 bg-gray-50 space-y-3">
+                                            <div class="space-y-2">
+                                                <label class="block text-sm font-medium text-gray-700">Pilih Bank</label>
+                                                <select name="bankType" class="w-full px-4 py-2 border border-gray-200 rounded-button focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                                                    <option value="bca">BCA</option>
+                                                    <option value="mandiri">Mandiri</option>
+                                                    <option value="bni">BNI</option>
+                                                    <option value="bri">BRI</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Pay Later -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <label class="flex items-center p-4 cursor-pointer">
+                                            <input type="radio" name="paymentMethod" value="paylater" required class="w-4 h-4 text-primary border-gray-300 focus:ring-primary">
+                                            <span class="ml-3">
+                                                <span class="block font-medium text-gray-900">Pay Later</span>
+                                                <span class="block text-sm text-gray-500">Kredivo, Akulaku, GoPay Later</span>
+                                            </span>
+                                        </label>
+                                        <div class="payment-details hidden border-t border-gray-100 p-4 bg-gray-50 space-y-3">
+                                            <div class="space-y-2">
+                                                <label class="block text-sm font-medium text-gray-700">Pilih Pay Later</label>
+                                                <select name="paylaterType" class="w-full px-4 py-2 border border-gray-200 rounded-button focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                                                    <option value="kredivo">Kredivo</option>
+                                                    <option value="akulaku">Akulaku</option>
+                                                    <option value="gopaylater">GoPay Later</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Cash on Delivery -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <label class="flex items-center p-4 cursor-pointer">
+                                            <input type="radio" name="paymentMethod" value="cod" required class="w-4 h-4 text-primary border-gray-300 focus:ring-primary">
+                                            <span class="ml-3">
+                                                <span class="block font-medium text-gray-900">Cash on Delivery (COD)</span>
+                                                <span class="block text-sm text-gray-500">Bayar saat barang sampai</span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="w-full lg:w-1/3">
+                    <div class="bg-white rounded-lg shadow-sm p-6 sticky top-4">
+                        <h2 class="text-xl font-semibold mb-6">Ringkasan Pesanan</h2>
+                        <div id="orderItems" class="divide-y divide-gray-100">
+                            <!-- Order items will be inserted here -->
+                        </div>
+                        
+                        <div class="border-t border-gray-100 mt-4 pt-4 space-y-2">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Subtotal</span>
+                                <span id="subtotal" class="font-medium"></span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Ongkos Kirim</span>
+                                <span id="shippingCost" class="font-medium">Rp 20.000</span>
+                            </div>
+                            <div class="flex justify-between text-base font-medium pt-2">
+                                <span>Total</span>
+                                <span id="total" class="text-primary"></span>
+                            </div>
+                        </div>
+
+                        <button onclick="processCheckout()" class="w-full mt-6 bg-primary text-white font-medium py-3 px-4 rounded-button hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary/20">
+                            Bayar Sekarang
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let checkoutItems = [];
+        const SHIPPING_COST = 20000;
+
+        // Load cart items for checkout
+        function loadCheckoutItems() {
+            const savedCheckoutData = localStorage.getItem('checkoutData');
+            if (savedCheckoutData) {
+                const parsedData = JSON.parse(savedCheckoutData);
+                checkoutItems = parsedData.items || [];
+                // Clear checkoutData from localStorage after loading to prevent stale data
+                localStorage.removeItem('checkoutData'); 
+            } else {
+                checkoutItems = [];
+            }
+
+            if (checkoutItems.length === 0) {
+                Swal.fire({
+                    title: 'Keranjang Kosong',
+                    text: 'Tidak ada produk untuk di-checkout. Anda akan diarahkan ke halaman utama.',
+                    icon: 'warning',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.location.href = 'home.html'; // Redirect to home.html if no items
+                });
+                return;
+            }
+
+            displayOrderSummary();
+        }
+
+        // Display order items and calculate totals
+        function displayOrderSummary() {
+            const orderItems = document.getElementById('orderItems');
+            const subtotalElement = document.getElementById('subtotal');
+            const totalElement = document.getElementById('total');
+
+            // Group items by product ID
+            const groupedItems = checkoutItems.reduce((acc, item) => {
+                const existingItem = acc.find(i => i.id === item.id);
+                if (existingItem) {
+                    existingItem.quantity += (item.quantity || 1);
+                } else {
+                    acc.push({ ...item, quantity: item.quantity || 1 });
+                }
+                return acc;
+            }, []);
+
+            // Calculate subtotal
+            const subtotal = groupedItems.reduce((total, item) => {
+                return total + (item.price * item.quantity * 15000);
+            }, 0);
+
+            // Display items
+            orderItems.innerHTML = groupedItems.map(item => `
+                <div class="flex items-center gap-4 py-4">
+                    <img src="${item.image}" alt="${item.title}" class="w-16 h-16 object-contain rounded">
+                    <div class="flex-1 min-w-0">
+                        <h3 class="text-sm font-medium text-gray-900 truncate">${item.title}</h3>
+                        <p class="text-sm text-gray-500">${item.quantity} x Rp ${(item.price * 15000).toLocaleString('id-ID')}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // Update totals
+            subtotalElement.textContent = `Rp ${subtotal.toLocaleString('id-ID')}`;
+            totalElement.textContent = `Rp ${(subtotal + SHIPPING_COST).toLocaleString('id-ID')}`;
+        }
+
+        // Process the checkout
+        function processCheckout() {
+            const form = document.getElementById('checkoutForm');
+            
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const formData = new FormData(form);
+            const orderData = {
+                customer: {
+                    fullName: formData.get('fullName'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone')
+                },
+                shipping: {
+                    address: formData.get('address'),
+                    province: formData.get('province'),
+                    city: formData.get('city'),
+                    district: formData.get('district'),
+                    postalCode: formData.get('postalCode'),
+                    notes: formData.get('notes')
+                },
+                payment: {
+                    method: formData.get('paymentMethod'),
+                    provider: formData.get(`${formData.get('paymentMethod')}Type`)
+                },
+                items: checkoutItems,
+                totals: {
+                    subtotal: checkoutItems.reduce((total, item) => total + (item.price * (item.quantity || 1) * 15000), 0),
+                    shipping: SHIPPING_COST,
+                    total: checkoutItems.reduce((total, item) => total + (item.price * (item.quantity || 1) * 15000), 0) + SHIPPING_COST
+                }
+            };
+
+            // Here you would typically send this data to your backend
+            console.log('Order data:', orderData);
+
+            // Show different messages based on payment method
+            let successMessage = 'Pesanan berhasil! ';
+            switch(orderData.payment.method) {
+                case 'ewallet':
+                    successMessage += `Silakan buka aplikasi ${orderData.payment.provider.toUpperCase()} untuk menyelesaikan pembayaran.`;
+                    break;
+                case 'bank':
+                    successMessage += `Silakan transfer ke rekening ${orderData.payment.provider.toUpperCase()} yang tertera.`;
+                    break;
+                case 'paylater':
+                    successMessage += `Silakan buka aplikasi ${orderData.payment.provider} untuk menyelesaikan pembayaran.`;
+                    break;
+                case 'cod':
+                    successMessage += 'Pembayaran akan dilakukan saat barang sampai.';
+                    break;
+            }
+            
+            // Use SweetAlert2 for success message and redirect
+            Swal.fire({
+                title: 'Checkout Berhasil!',
+                text: successMessage,
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                // Clear cart if items were from cart
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.has('items')) {
+                    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                    const selectedIndexes = urlParams.get('items').split(',').map(Number);
+                    const newCart = cart.filter((_, index) => !selectedIndexes.includes(index));
+                    localStorage.setItem('cart', JSON.stringify(newCart));
+                    // Also update cart badge in home.html if user returns there
+                    if (typeof updateCartBadge === 'function') {
+                        updateCartBadge();
+                    }
+                }
+                window.location.href = 'home.html'; // Redirect to home.html after successful checkout
+            });
+        }
+
+        // Handle payment method selection
+        document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Hide all payment details first
+                document.querySelectorAll('.payment-details').forEach(details => {
+                    details.classList.add('hidden');
+                });
+                
+                // Show selected payment details if any
+                const selectedDetails = this.closest('.border').querySelector('.payment-details');
+                if (selectedDetails) {
+                    selectedDetails.classList.remove('hidden');
+                }
+            });
+        });
+
+        // Initialize checkout page
+        document.addEventListener('DOMContentLoaded', loadCheckoutItems);
+    </script>
+    <script src="src/assets/js/main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#dc2626',secondary:'#4b5563'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            background-color: #f9fafb;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="container mx-auto px-4 py-6 max-w-5xl">
+        <!-- Back button -->
+        <a href="home.html"><button class="w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center mb-8 !rounded-button">
+            <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-arrow-left-s-line ri-lg"></i>
+            </div>
+        </button></a>
+
+        <div class="flex flex-col md:flex-row items-start justify-between gap-8">
+            <!-- Profile Card -->
+            <div class="bg-white rounded-2xl shadow-md p-8 w-full md:w-96 flex flex-col">
+                <h2 class="text-3xl font-bold mb-8">Dzvy</h2>
+                <a href="index.html"><button class="w-full bg-primary text-white py-3 px-6 rounded-full hover:bg-primary/90 transition-colors duration-200 mt-auto font-medium !rounded-button whitespace-nowrap">
+                    Log Out
+                </button></a>
+            </div>
+
+            <!-- Profile Avatar -->
+            <div class="flex flex-col items-center">
+                <div class="w-32 h-32 bg-black rounded-full mb-4 flex items-center justify-center">
+                    <div class="w-16 h-16 flex items-center justify-center">
+                        <i class="ri-user-fill ri-3x text-gray-600"></i>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-lg font-medium text-gray-800">Account</h3>
+                    <p class="text-sm text-gray-500">Last login: May 13, 2025</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Account Information -->
+        <!-- <div class="mt-12 bg-white rounded-2xl shadow-md p-8">
+            <h3 class="text-xl font-semibold mb-6">Account Information</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <p class="text-gray-900">dzvy@example.com</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                        <p class="text-gray-900">+1 (555) 123-4567</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Membership</label>
+                        <p class="text-gray-900">Premium</p>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Member Since</label>
+                        <p class="text-gray-900">January 15, 2024</p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Settings Section -->
+        <!-- <div class="mt-8 bg-white rounded-2xl shadow-md p-8">
+            <h3 class="text-xl font-semibold mb-6">Settings</h3>
+            
+            <div class="space-y-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="font-medium text-gray-900">Notifications</h4>
+                        <p class="text-sm text-gray-500">Receive email notifications</p>
+                    </div>
+                    
+                    
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" value="" class="sr-only peer" checked>
+                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                    </label>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="font-medium text-gray-900">Two-Factor Authentication</h4>
+                        <p class="text-sm text-gray-500">Add an extra layer of security</p>
+                    </div>
+                    
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" value="" class="sr-only peer">
+                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                    </label>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="font-medium text-gray-900">Dark Mode</h4>
+                        <p class="text-sm text-gray-500">Switch between light and dark themes</p>
+                    </div>
+                    
+                    
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" value="" class="sr-only peer">
+                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggles = document.querySelectorAll('input[type="checkbox"]');
+            toggles.forEach(toggle => {
+                toggle.addEventListener('change', function() {
+                    console.log('Toggle changed:', this.checked);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

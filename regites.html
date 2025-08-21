@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar - DZVYSTORE</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#d32f2f',secondary:'#f44336'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            background-color: #ffffff;
+        }
+        .input-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-4xl flex justify-center">
+        <!-- Back button -->
+        <a href="index.html" class="absolute top-8 left-8 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center">
+            <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-arrow-left-s-line ri-lg"></i>
+            </div>
+        </a>
+
+        <!-- Main card -->
+        <div class="bg-white rounded-3xl shadow-lg p-8 w-full max-w-md relative">
+            <div class="flex flex-col">
+                <!-- Form header -->
+                <h1 class="text-3xl font-bold mb-8 text-center">Daftar</h1>
+                
+                <!-- Registration form -->
+                <form class="space-y-4" onsubmit="window.location.href='home.html'; return false;">
+                    <!-- Email input -->
+                    <div class="relative">
+                        <input type="email" placeholder="Email" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                        <div class="input-icon w-6 h-6 flex items-center justify-center">
+                            <i class="ri-mail-line"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Password input -->
+                    <div class="relative">
+                        <input type="password" placeholder="Password" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                        <div class="input-icon w-6 h-6 flex items-center justify-center">
+                            <i class="ri-lock-line"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Confirm Password input -->
+                    <div class="relative">
+                        <input type="password" placeholder="Confirm Password" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                        <div class="input-icon w-6 h-6 flex items-center justify-center">
+                            <i class="ri-lock-line"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Register button -->
+                    <button type="submit" class="w-full bg-primary text-white py-3 rounded-xl font-semibold transition hover:bg-primary/90 !rounded-button whitespace-nowrap">Daftar</button>
+                </form>
+                
+                <!-- Divider -->
+                <div class="flex items-center my-6">
+                    <div class="flex-1 border-t border-gray-300"></div>
+                    <span class="px-4 text-gray-500 font-medium">OR</span>
+                    <div class="flex-1 border-t border-gray-300"></div>
+                </div>
+                
+                <!-- Google sign in -->
+                <button class="w-full bg-white border border-gray-300 rounded-xl py-3 flex items-center justify-center space-x-3 transition hover:bg-gray-50 !rounded-button whitespace-nowrap">
+                    <div class="w-5 h-5 flex items-center justify-center">
+                        <i class="ri-google-fill text-[#4285F4]"></i>
+                    </div>
+                    <span class="font-medium">Masuk Dengan Google</span>
+                </button>
+                
+                <!-- Login link -->
+                <p class="text-center mt-6 text-gray-700">
+                    SUdah Memiliki Akun? 
+                    <a href="login.html" class="text-primary font-semibold">Masuk</a>
+                </p>
+            </div>
+        </div>
+        
+        <!-- Logo section -->
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div>
+                <img src="src/assets/images/logo-search-grid-2x (1).png" alt="Logo" width="100%" height="border-gray-100" style="border-radius: 10%;">
+            </div>
+        </div> 
+        </div>
+    </div>
+</body>
+</html>

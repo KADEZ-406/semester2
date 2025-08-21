@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DazyStore - Belanja Online Terpercaya</title>
+    <link rel="stylesheet" href="src/assets/css/output.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <img src="src/assets/images/logo-search-grid-2x (1).png" alt="Logo" width="10%" height="10%" style="border-radius: 10%;">
+            <div class="flex items-center space-x-3">
+                <div class="relative w-64">
+                    <input type="text" placeholder="Cari produk..." class="w-full py-2 px-4 pr-10 border border-gray-200 rounded-button text-sm">
+                    <div class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 flex items-center justify-center">
+                        <i class="ri-search-line text-gray-400"></i>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 cursor-pointer">
+                        <i class="ri-notification-3-line text-gray-700"></i>
+                    </div>
+                    <div class="relative">
+                        <button id="cartButton" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 cursor-pointer">
+                            <i class="ri-shopping-cart-2-line text-gray-700"></i>
+                            <span id="cartCount" class="cart-badge"></span>
+                        </button>
+                    </div>
+                    <div class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 cursor-pointer">
+                        <a href="profile.html"><i class="ri-user-line text-gray-700"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Modal -->
+    <div id="modalBackdrop" class="modal-backdrop"></div>
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2 class="text-lg font-semibold">Keranjang</h2>
+                <button id="closeCart" class="text-gray-500 hover:text-gray-700">
+                    <i class="ri-close-line text-xl"></i>
+                </button>
+            </div>
+            <div id="cartContent"></div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section relative overflow-hidden">
+        <div class="container mx-auto relative z-10">
+            <div class="flex items-center w-full">
+                <div class="w-1/2 text-white py-16 pl-4">
+                    <h1 class="text-4xl font-bold mb-4">Aplikasi Online Shop</h1>
+                    <p class="text-xl mb-6">Di Luar Negeri</p>
+                    <button class="bg-white text-primary px-6 py-3 font-medium rounded-button whitespace-nowrap">Belanja Sekarang</button>
+                </div>
+                <div class="w-1/2"></div>
+            </div>
+        </div>
+        <img src="https://readdy.ai/api/search-image?query=colorful%20illustration%20of%20people%20shopping%20online%20with%20shopping%20cart%2C%20mobile%20phones%2C%20and%20shopping%20bags%20on%20a%20bright%20red%20background%2C%20modern%20flat%20design%20style%2C%20digital%20illustration&width=1200&height=400&seq=12345&orientation=landscape" 
+             class="absolute inset-0 w-full h-full object-cover object-top" alt="Hero Image">
+        <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 w-10 h-10 rounded-full flex items-center justify-center shadow-md z-20">
+            <i class="ri-arrow-left-s-line text-gray-700 ri-lg"></i>
+        </button>
+        <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 w-10 h-10 rounded-full flex items-center justify-center shadow-md z-20">
+            <i class="ri-arrow-right-s-line text-gray-700 ri-lg"></i>
+        </button>
+    </section>
+
+    <!-- Search Categories -->
+    <section class="py-8">
+        <div class="container mx-auto px-4">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h2 class="text-lg font-semibold mb-6">Paling Banyak Di Cari</h2>
+                <div class="flex items-center">
+                    <div class="grid grid-cols-3 gap-4 w-2/3">
+                        <a href="#" class="flex flex-col items-center p-4 border border-gray-100 rounded-lg hover:shadow-md transition-shadow">
+                            <div class="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center mb-2">
+                                <i class="ri-shopping-bag-line text-primary ri-lg"></i>
+                            </div>
+                            <span class="text-sm text-center">Tas Belanja Terbaru</span>
+                        </a>
+                        <a href="#" class="flex flex-col items-center p-4 border border-gray-100 rounded-lg hover:shadow-md transition-shadow">
+                            <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-2">
+                                <i class="ri-smartphone-line text-blue-500 ri-lg"></i>
+                            </div>
+                            <span class="text-sm text-center">Smartphone Terlaris</span>
+                        </a>
+                        <a href="#" class="flex flex-col items-center p-4 border border-gray-100 rounded-lg hover:shadow-md transition-shadow">
+                            <div class="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center mb-2">
+                                <i class="ri-camera-line text-gray-700 ri-lg"></i>
+                            </div>
+                            <span class="text-sm text-center">Kamera Terbaik</span>
+                        </a>
+                    </div>
+                    <div class="w-1/3 pl-8">
+                        <div class="flex flex-col">
+                            <label class="text-sm font-medium mb-2">Top Up / Bayar tagihan</label>
+                            <div class="flex space-x-2">
+                                <input type="number" placeholder="No Hp / No Rekening" class="w-1/2 border border-gray-200 rounded-button px-3 py-2 text-sm">
+                                <input type="number" placeholder="Nominal" class="w-1/2 border border-gray-200 rounded-button px-3 py-2 text-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Navigation -->
+    <section class="pb-4">
+        <div class="container mx-auto px-4">
+            <div class="border-b border-gray-200">
+                <div class="flex space-x-8">
+                    <button class="text-primary font-medium py-3 border-b-2 border-primary">Terlaris</button>
+                    <button class="text-gray-600 font-medium py-3 hover:text-primary">Rekomendasi</button>
+                    <button class="text-gray-600 font-medium py-3 hover:text-primary">Terbaru</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Grid -->
+    <section class="pb-16">
+        <div class="container mx-auto px-4">
+            <div id="productGrid" class="grid grid-cols-5 gap-4">
+                <!-- Products will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-4 gap-8 mb-12">
+                <div>
+                    <p class="text-sm leading-relaxed mb-6">
+                        DazyStore adalah platform belanja online yang menyediakan solusi belanja praktis bagi konsumen. Kami menawarkan berbagai produk berkualitas dari berbagai kategori termasuk fashion, elektronik, perlengkapan rumah tangga, hingga aksesoris lainnya.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-4">Tentang Kami</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:underline">Tentang DazyStore</a></li>
+                        <li><a href="#" class="hover:underline">Karir</a></li>
+                        <li><a href="#" class="hover:underline">Blog</a></li>
+                        <li><a href="#" class="hover:underline">Syarat & Ketentuan</a></li>
+                        <li><a href="#" class="hover:underline">Kebijakan Privasi</a></li>
+                        <li><a href="#" class="hover:underline">Mitra</a></li>
+                        <li><a href="#" class="hover:underline">Hubungi Kami</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-4">Bantuan</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:underline">Pusat Bantuan</a></li>
+                        <li><a href="#" class="hover:underline">Cara Berbelanja</a></li>
+                        <li><a href="#" class="hover:underline">Pengiriman</a></li>
+                        <li><a href="#" class="hover:underline">Pembayaran</a></li>
+                        <li><a href="#" class="hover:underline">Pengembalian & Refund</a></li>
+                        <li><a href="#" class="hover:underline">Garansi</a></li>
+                        <li><a href="#" class="hover:underline">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <img src="src/assets/images/logo-search-grid-2x (1).png" alt="Logo" width="100%" height="border-gray-100" style="border-radius: 10%;">
+                </div>
+            </div>
+            <div class="border-t border-white/20 pt-6">
+                <div class="flex justify-between items-center">
+                    <p class="text-sm">© 2025 DazyStore.com — All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="src/assets/js/main.js"></script>
+</body>
+</html>
